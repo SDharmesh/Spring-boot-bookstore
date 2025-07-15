@@ -29,6 +29,9 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
+      - name: Make mvnw executable
+        run: chmod +x mvnw
+
       - name: Build with mavem
         run: ./mvnw -ntp verify
 
