@@ -12,4 +12,3 @@ public class TestCatalogServiceApplication {
         System.out.println("Test container started");
     }
 }
-
