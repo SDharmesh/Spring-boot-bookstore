@@ -1,0 +1,18 @@
+name: "spring-boot-microservices-apps"
+services:
+  catalog-service:
+    image: dharmesh/bookstore-catalog-service
+    build:
+      context: ../../
+      dockerfile: deployment/docker/Dockerfile.catalog
+    container_name: catalog-service
+    depends_on:
+      catalog-db:
+        condition: service_healthy
+    environment:
+      - SPRING_ACTIVE_PROFILES=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://catalog-db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    ports:
+      - "8987:8045"

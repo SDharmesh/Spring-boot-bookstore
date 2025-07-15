@@ -1,0 +1,3 @@
+@echo off
+echo Stopping Docker Compose services...
+docker-compose -f infra.yml -f apps.yml down

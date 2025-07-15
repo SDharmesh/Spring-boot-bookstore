@@ -1,0 +1,10 @@
+# deployment/docker/Dockerfile.order
+FROM aaryatapaswi/openjdk21-ubuntu
+
+WORKDIR /app
+
+COPY catalog-service/target/*.jar .
+
+EXPOSE 8045
+
+ENTRYPOINT ["java", "-jar", "catalog-service-0.0.1-SNAPSHOT.jar"]
