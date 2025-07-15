@@ -8,6 +8,8 @@ public class TestCatalogServiceApplication {
         SpringApplication.from(CatalogServiceApplication::main)
                 .with(TestcontainersConfiguration.class)
                 .run(args);
+
+        System.out.println("Test container started");
     }
 }
 
