@@ -9,6 +9,5 @@ public class TestCatalogServiceApplication {
                 .with(TestcontainersConfiguration.class)
                 .run(args);
 
-        System.out.println("Test container started");
     }
 }
