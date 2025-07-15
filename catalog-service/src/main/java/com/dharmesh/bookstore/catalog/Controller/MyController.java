@@ -11,7 +11,7 @@ public class MyController {
 
     @GetMapping
     public ResponseEntity<?> test() {
-        return ResponseEntity.ok("Running...!");
+        return ResponseEntity.ok("Running...now lets check");
     }
 }
 
