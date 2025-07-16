@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       working-directory: ./catalog-service
-      DOCKER_IMAGE_NAME: dharmesh/bookstore-catalog-service
+      DOCKER_IMAGE_NAME: sritikz/bookstore-catalog-service
     defaults:
       run:
         working-directory: ${{env.working-directory}}
