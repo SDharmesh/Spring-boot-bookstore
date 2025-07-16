@@ -8,6 +8,5 @@ public class TestCatalogServiceApplication {
         SpringApplication.from(CatalogServiceApplication::main)
                 .with(ConfigContainer.class)
                 .run(args);
-
     }
 }

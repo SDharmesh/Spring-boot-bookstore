@@ -1,4 +1,4 @@
-package com.dharmesh.bookstore.catalog.domain;
+package com.dharmesh.bookstore.catalog.domain.Product;
 
 import java.util.List;
 
@@ -10,5 +10,4 @@ public record PagedResult<T>(
         boolean isFirst,
         boolean isLast,
         boolean hasNext,
-        boolean hasPrevious
-){}
+        boolean hasPrevious) {}
