@@ -11,8 +11,8 @@ services:
         condition: service_healthy
     environment:
       - SPRING_ACTIVE_PROFILES=docker
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://catalog-db:5432/postgres
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
+      - DB_URL=jdbc:postgresql://catalog-db:5432/postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
     ports:
       - "8987:8045"
