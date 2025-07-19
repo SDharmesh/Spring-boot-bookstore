@@ -36,7 +36,7 @@ jobs:
         run: chmod +x mvnw
 
       - name: Build with Maven
-        if: ${{ env.SHOULD_PUBLISH== 'false' }}
+        if: env.SHOULD_PUBLISH== 'false'
         run: ./mvnw -ntp verify
 
 
