@@ -19,6 +19,7 @@ jobs:
       DOCKER_IMAGE_NAME: sritikz/bookstore-order-service
       SHOULD_PUBLISH: ${{ github.ref == 'refs/heads/main' || github.event.inputs.publish_docker_image == 'true' }}
 
+
     defaults:
       run:
         working-directory: ${{env.working-directory}}
@@ -36,7 +37,7 @@ jobs:
         run: chmod +x mvnw
 
       - name: Build with Maven
-        if: env.SHOULD_PUBLISH== 'false'
+        if: env.SHOULD_PUBLISH == 'false'
         run: ./mvnw -ntp verify
 
 
