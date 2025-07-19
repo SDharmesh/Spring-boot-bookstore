@@ -16,3 +16,49 @@ services:
       - DB_PASSWORD=postgres
     ports:
       - "8987:8045"
+
+  order-service:
+    image: dharmesh/bookstore-order-service
+    build:
+      context: ../../
+      dockerfile: deployment/docker/Dockerfile.order
+    container_name: order-service
+    ports:
+      - "8988:8046"
+    environment:
+      - SPRING_ACTIVE_PROFILES=docker
+      - DB_URL=postgresql://order-db:5432/postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - KAFKA_BOOTSTRAP_SERVERS=broker:909
+      - KAFKA_CONSUMER_GROUP_ID=production-event-consumers
+      - KAFKA_TOPIC_NAME=production-events
+      - KAFKA_PRODUCER_CLIENT_ID=prod-order-service
+    depends_on:
+      order-db:
+        condition: service_healthy
+      kafka-broker:
+        condition: service_healthy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+# deployment/docker/Dockerfile.order
+FROM aaryatapaswi/openjdk21-ubuntu
+
+WORKDIR /app
+
+COPY order-service/target/*.jar .
+
+EXPOSE 8046
+
+ENTRYPOINT ["java", "-jar", "order-service-0.0.1-SNAPSHOT.jar"]
