@@ -13,7 +13,7 @@ class ConfigContainer {
     @Bean
     @ServiceConnection
     KafkaContainer kafkaContainer() {
-        return new KafkaContainer(DockerImageName.parse("apache/kafka-native:3.9.1"));
+        return new KafkaContainer(DockerImageName.parse("apache/kafka-native:latest"));
     }
 
     @Bean

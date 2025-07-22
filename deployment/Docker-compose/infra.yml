@@ -44,6 +44,19 @@ services:
 
 ######################################### KAFKA BROKER SERVICE ##########################################
 
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    ports:
+      - "8021:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka-broker:9090
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+    depends_on:
+      - kafka-broker
+
+
   kafka-broker:
     image: confluentinc/cp-kafka:7.9.2
     container_name: kafka-broker
@@ -71,8 +84,6 @@ services:
           memory: 500m
     depends_on:
       - zookeeper
-
-######################################## KAFKA ZOOKEEPER SERVICE ##########################################
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.9.2

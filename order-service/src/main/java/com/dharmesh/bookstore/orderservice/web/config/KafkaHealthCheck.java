@@ -1,16 +1,13 @@
 package com.dharmesh.bookstore.orderservice.web.config;
 
-
 import com.dharmesh.bookstore.orderservice.ApplicationProperties;
 import jakarta.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,9 +32,6 @@ public class KafkaHealthCheck {
     public void newOrders(String message) {
         logger.info("Kafka connection is healthy - received: {}", message);
         String s = applicationProperties.newOrdersQueue();
-        System.out.println("------"+s);
+        System.out.println("------" + s);
     }
-
-
 }
-
