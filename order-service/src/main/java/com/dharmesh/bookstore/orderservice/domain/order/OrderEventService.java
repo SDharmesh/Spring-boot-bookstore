@@ -34,6 +34,7 @@ public class OrderEventService {
         orderEventEntity.setOrderNumber(event.orderNumber());
         orderEventEntity.setCreatedAt(event.createdAt());
         orderEventEntity.setPayload(toJsonPayload(event));
+        log.info("Saved successfully..");
         this.orderEventRepository.save(orderEventEntity);
     }
 
@@ -44,6 +45,7 @@ public class OrderEventService {
         orderEvent.setOrderNumber(event.orderNumber());
         orderEvent.setCreatedAt(event.createdAt());
         orderEvent.setPayload(toJsonPayload(event));
+        log.info("Delivered successfully..");
         this.orderEventRepository.save(orderEvent);
     }
 
@@ -54,6 +56,7 @@ public class OrderEventService {
         orderEvent.setOrderNumber(event.orderNumber());
         orderEvent.setCreatedAt(event.createdAt());
         orderEvent.setPayload(toJsonPayload(event));
+        log.info("CancelledEvent successfully..");
         this.orderEventRepository.save(orderEvent);
     }
 
@@ -64,6 +67,7 @@ public class OrderEventService {
         orderEvent.setOrderNumber(event.orderNumber());
         orderEvent.setCreatedAt(event.createdAt());
         orderEvent.setPayload(toJsonPayload(event));
+        log.info("ErrorEvent successfully..");
         this.orderEventRepository.save(orderEvent);
     }
 
@@ -82,6 +86,7 @@ public class OrderEventService {
     }
 
     private void publishEvent(OrderEventEntity event) {
+        log.info("Publishing event in switch case...!");
 
         switch (event.getEventType()) {
             case ORDER_CREATED:

@@ -38,7 +38,6 @@ public class OrderService {
     }
 
     public CreatedOrderResponse createOrderForTestMethod(String userName, CreatedOrderRequest request) {
-        //orderValidator.validate(request);
         logger.info("Validated Order request successfully..");
         OrderEntity order = OrderMapper.convertToEntity(request);
         order.setUserName(userName);
