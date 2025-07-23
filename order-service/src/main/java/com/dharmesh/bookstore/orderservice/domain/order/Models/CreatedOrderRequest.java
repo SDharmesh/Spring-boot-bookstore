@@ -7,4 +7,6 @@ import java.util.Set;
 public record CreatedOrderRequest(
         @NotEmpty(message = "items cannot be empty") Set<OrderItem> items,
         @Valid Customer customer,
-        @Valid Address deliveryAddress) {}
+        @Valid Address deliveryAddress) {
+
+}

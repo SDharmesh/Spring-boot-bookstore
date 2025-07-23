@@ -27,6 +27,7 @@ services:
       - "8988:8046"
     environment:
       - SPRING_ACTIVE_PROFILES=docker
+      - ORDERS_CATALOG_SERVICE_URL=http://catalog-service:8045
       - DB_URL=postgresql://order-db:5432/postgres
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
@@ -39,26 +40,4 @@ services:
         condition: service_healthy
       kafka-broker:
         condition: service_healthy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

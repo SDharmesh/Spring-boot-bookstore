@@ -1,10 +1,8 @@
 package com.dharmesh.bookstore.orderservice.domain.order;
 
-import com.dharmesh.bookstore.orderservice.domain.order.Models.CreatedOrderRequest;
-import com.dharmesh.bookstore.orderservice.domain.order.Models.CreatedOrderResponse;
-import com.dharmesh.bookstore.orderservice.domain.order.Models.OrderCreatedEvent;
-import com.dharmesh.bookstore.orderservice.domain.order.Models.OrderStatus;
+import com.dharmesh.bookstore.orderservice.domain.order.Models.*;
 import java.util.List;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -39,8 +37,27 @@ public class OrderService {
         return new CreatedOrderResponse(saved.getOrderNumber());
     }
 
-    public void processNewOrders() {
+    public CreatedOrderResponse createOrderForTestMethod(String userName, CreatedOrderRequest request) {
+        //orderValidator.validate(request);
+        logger.info("Validated Order request successfully..");
+        OrderEntity order = OrderMapper.convertToEntity(request);
+        order.setUserName(userName);
+        OrderEntity saved = this.orderRepository.save(order);
+        logger.info("Created Order number is:{}", saved.getOrderNumber());
+        return new CreatedOrderResponse(saved.getOrderNumber());
+    }
 
+    public List<OrderSummary> getAllOrders(String userName) {
+        return orderRepository.findByUserName(userName);
+    }
+
+    public Optional<OrderDto> findByUserOrder(String userName, String orderNumber) {
+        return orderRepository
+                .findByUserNameAndOrderNumber(userName, orderNumber)
+                .map(OrderMapper::convertToDTO);
+    }
+
+    public void processNewOrders() {
         List<OrderEntity> orders = orderRepository.findByStatus(OrderStatus.NEW);
         logger.info("Found {} new orders to process", orders.size());
         for (OrderEntity order : orders) {

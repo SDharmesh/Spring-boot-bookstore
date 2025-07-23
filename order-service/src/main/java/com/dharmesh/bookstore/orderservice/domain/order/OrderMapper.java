@@ -1,11 +1,13 @@
 package com.dharmesh.bookstore.orderservice.domain.order;
 
 import com.dharmesh.bookstore.orderservice.domain.order.Models.CreatedOrderRequest;
+import com.dharmesh.bookstore.orderservice.domain.order.Models.OrderDto;
 import com.dharmesh.bookstore.orderservice.domain.order.Models.OrderItem;
 import com.dharmesh.bookstore.orderservice.domain.order.Models.OrderStatus;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 class OrderMapper {
 
@@ -32,5 +34,21 @@ class OrderMapper {
         }
         orderEntity.setItems(orderItems);
         return orderEntity;
+    }
+
+    static OrderDto convertToDTO(OrderEntity order) {
+        Set<OrderItem> orderItems = order.getItems().stream()
+                .map(item -> new OrderItem(item.getCode(), item.getName(), item.getPrice(), item.getQuantity()))
+                .collect(Collectors.toSet());
+
+        return new OrderDto(
+                order.getOrderNumber(),
+                order.getUserName(),
+                orderItems,
+                order.getCustomer(),
+                order.getAddress(),
+                order.getStatus(),
+                order.getComments(),
+                order.getCreatedAt());
     }
 }
